@@ -124,7 +124,14 @@
         v-once
         class="mx-5 mt-1"
       >
-        {{ $t('g1g1Limitations') }}
+        {{ $t('g1g1Limitations', {
+          promoStartMonth,
+          promoStartOrdinal,
+          promoStartTime,
+          promoEndMonth,
+          promoEndOrdinal,
+          promoEndTime,
+        })) }}
       </p>
     </div>
   </b-modal>
@@ -293,6 +300,7 @@ import { mapState } from '@/libs/store';
 import closeIcon from '@/assets/svg/close.svg';
 import bigGiftIcon from '@/assets/svg/big-gift.svg';
 import ValidatedTextInput from '@/components/ui/validatedTextInput.vue';
+import moment from 'moment';
 
 export default {
   components: { ValidatedTextInput },
@@ -318,11 +326,28 @@ export default {
       if (this.userSearchTerm.length < 1) return true;
       return typeof this.foundUser._id === 'undefined';
     },
-
     userInputInvalidIssues () {
       return this.userSearchTerm.length > 0 && this.userNotFound
         ? [this.$t('userWithUsernameOrUserIdNotFound')]
         : [''];
+    },
+    promoStartMonth () {
+      return moment(this.currentEvent.start).format('MMMM');
+    },
+    promoStartOrdinal () {
+      return moment(this.currentEvent.start).format('Do');
+    },
+    promoStartTime () {
+      return moment(this.currentEvent.start).format('hh:mm A');
+    },
+    promoEndMonth () {
+      return moment(this.currentEvent.end).format('MMMM');
+    },
+    promoEndOrdinal () {
+      return moment(this.currentEvent.end).format('Do');
+    },
+    promoEndTime () {
+      return moment(this.currentEvent.end).format('hh:mm A');
     },
   },
   watch: {
