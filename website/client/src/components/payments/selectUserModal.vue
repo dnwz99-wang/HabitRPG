@@ -296,11 +296,11 @@ h2 {
 import debounce from 'lodash/debounce';
 import find from 'lodash/find';
 import isUUID from 'validator/lib/isUUID';
+import moment from 'moment';
 import { mapState } from '@/libs/store';
 import closeIcon from '@/assets/svg/close.svg';
 import bigGiftIcon from '@/assets/svg/big-gift.svg';
 import ValidatedTextInput from '@/components/ui/validatedTextInput.vue';
-import moment from 'moment';
 
 export default {
   components: { ValidatedTextInput },
