@@ -131,7 +131,7 @@
           promoEndMonth,
           promoEndOrdinal,
           promoEndTime,
-        })) }}
+        }) }}
       </p>
     </div>
   </b-modal>
