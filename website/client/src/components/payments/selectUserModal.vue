@@ -332,21 +332,27 @@ export default {
         : [''];
     },
     promoStartMonth () {
+      if (!this.currentEvent) return null;
       return moment(this.currentEvent.start).format('MMMM');
     },
     promoStartOrdinal () {
+      if (!this.currentEvent) return null;
       return moment(this.currentEvent.start).format('Do');
     },
     promoStartTime () {
+      if (!this.currentEvent) return null;
       return moment(this.currentEvent.start).format('hh:mm A');
     },
     promoEndMonth () {
+      if (!this.currentEvent) return null;
       return moment(this.currentEvent.end).format('MMMM');
     },
     promoEndOrdinal () {
+      if (!this.currentEvent) return null;
       return moment(this.currentEvent.end).format('Do');
     },
     promoEndTime () {
+      if (!this.currentEvent) return null;
       return moment(this.currentEvent.end).format('hh:mm A');
     },
   },
