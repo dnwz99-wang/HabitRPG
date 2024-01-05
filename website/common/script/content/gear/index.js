@@ -1,5 +1,4 @@
 import each from 'lodash/each';
-import omitBy from 'lodash/omitBy';
 import defaults from 'lodash/defaults';
 import moment from 'moment';
 
@@ -77,14 +76,12 @@ each(GEAR_TYPES, type => {
         item.canOwn = ownsItem(key);
       }
 
-      if (item.released !== false) {
-        flat[key] = item;
-      }
+      flat[key] = item;
     });
   });
 });
 
 export default {
-  tree: omitBy(gear, gearItem => gearItem.released === false),
+  tree: gear,
   flat,
 };
