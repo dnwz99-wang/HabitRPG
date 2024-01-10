@@ -401,6 +401,7 @@ export {
   sendProfileFlagNotification,
   sendSubscriptionNotification,
   sendShadowMutedPostNotification,
+  sendProfileSlurNotification,
   sendChallengeSlurNotification,
   formatUser,
 };
