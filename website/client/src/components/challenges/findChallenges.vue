@@ -17,12 +17,14 @@
            {{ $t('sortBy') }}b-dropdown(:text="$t('sort')", right=true)
           b-dropdown-item(v-for='sortOption in sortOptions',
            :key="sortOption.value", @click='sort(sortOption.value)') {{sortOption.text}}-->
+          <!-- tried to disable button here, still bringe up the challenge creation button -->
           <button
             class="btn btn-secondary create-challenge-button float-right"
+            :class="{ disabled: user.flags.chatRevoked }"
             @click="createChallenge()"
           >
             <div
-              class="svg-icon positive-icon"
+              class="svg-icon positive-icon color"
               v-html="icons.positiveIcon"
             ></div>
             <span v-once>{{ $t('createChallenge') }}</span>
@@ -110,6 +112,17 @@
     text-align: center;
     color: $purple-300;
   }
+
+    .disabled {
+    color: $gray-50;
+    padding: 4px 16px 4px 12px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgba(26, 24, 29, 0.12), 0 1px 2px 0 rgba(26, 24, 29, 0.24);
+
+    .positive-icon {
+      color: $gray-200;
+    }
+  }
 </style>
 
 <script>
@@ -194,9 +207,14 @@ export default {
       this.page = 0;
       this.loadChallenges();
     },
+
     createChallenge () {
+      if (this.user.flags.chatRevoked) {
+        return;
+      }
       this.$root.$emit('habitica:create-challenge');
     },
+
     async loadChallenges () {
       this.loading = true;
 
