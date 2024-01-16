@@ -251,7 +251,6 @@ api.createChallenge = {
           Challenge Tag: ${req.body.shortName}\n
           Challenge Summary: ${req.body.summary}\n
           Challenge Description: ${req.body.description}`;
-  
         slack.sendChallengeSlurNotification({
           authorEmail,
           author: user,
@@ -261,10 +260,10 @@ api.createChallenge = {
           language: user.preferences.language,
           problemContent,
         });
-  
+
         user.flags.chatRevoked = true;
         await user.save();
-  
+
         throw new BadRequest(res.t('challengeBannedSlurs'));
       }
       if (textContainsBannedWord(textToCheck)) {
@@ -777,7 +776,8 @@ api.exportChallengeCsv = {
     // repeated n times for the n challenge tasks
     const challengeTasks = _.reduce(
       challenge.tasksOrder.toObject(),
-      (result, array) => result.concat(array), [],
+      (result, array) => result.concat(array),
+      [],
     ).sort();
     resArray.unshift(['UUID', 'Display Name', 'Username']);
 
