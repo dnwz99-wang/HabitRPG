@@ -26,6 +26,11 @@
           :reset-counter="resetCounter"
         />
 
+        <user-profile
+          :hero="hero"
+          :reset-counter="resetCounter"
+        />
+
         <party-and-quest
           v-if="adminHasPrivForParty"
           :user-id="hero._id"
@@ -107,6 +112,7 @@
 import BasicDetails from './basicDetails';
 import ItemsOwned from './itemsOwned';
 import CronAndAuth from './cronAndAuth';
+import UserProfile from './userProfile';
 import PartyAndQuest from './partyAndQuest';
 import AvatarAndDrops from './avatarAndDrops';
 import PrivilegesAndGems from './privilegesAndGems';
@@ -131,6 +137,7 @@ export default {
     Transactions,
     SubscriptionAndPerks,
     Achievements,
+    UserProfile,
   },
   mixins: [userStateMixin],
   beforeRouteUpdate (to, from, next) {
